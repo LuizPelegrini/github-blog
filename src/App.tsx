@@ -1,12 +1,12 @@
 import { GlobalStyle } from './styles/global';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './styles/themes/defaultTheme';
-import { Header } from './components/Header';
+import { Router } from './components/Router';
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Header />
+      <Router />
       <GlobalStyle />
     </ThemeProvider>
   );
