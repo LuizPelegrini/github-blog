@@ -12,6 +12,7 @@ import {
   ProfileHeader,
   Footer,
 } from './styles';
+import { SearchForm } from './components/SearchForm';
 
 export function Home() {
   return (
@@ -51,6 +52,8 @@ export function Home() {
           </Footer>
         </ProfileDetails>
       </ProfileContainer>
+
+      <SearchForm />
     </>
   );
 }
