@@ -10,9 +10,12 @@ import {
   ProfileContainer,
   ProfileDetails,
   ProfileHeader,
+  PostsGrid,
   Footer,
 } from './styles';
+
 import { SearchForm } from './components/SearchForm';
+import { PostCard } from './components/PostCard';
 
 export function Home() {
   return (
@@ -54,6 +57,13 @@ export function Home() {
       </ProfileContainer>
 
       <SearchForm />
+
+      <PostsGrid>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </PostsGrid>
     </>
   );
 }
