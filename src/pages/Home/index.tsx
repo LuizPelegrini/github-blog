@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 import { api } from '../../lib/axios';
 import { Issue } from '../../@types/issue';
 
-const USER_NAME = 'LuizPelegrini';
-const REPO_NAME = 'github-blog';
+const { VITE_USER_NAME: USER_NAME, VITE_REPO_NAME: REPO_NAME } = import.meta
+  .env;
 
 export function Home() {
   const [issues, setIssues] = useState<Issue[]>([]);
@@ -24,16 +24,19 @@ export function Home() {
     return data.items;
   }
 
+  console.log(import.meta.env.VITE_USER_NAME);
+
+  // sync by fetching issues
   useEffect(() => {
     let ignore = false;
 
     fetchIssues(query).then((issues) => {
       if (!ignore) {
         setIssues(issues);
-        console.log(issues);
       }
     });
 
+    // to prevent race condition on multiple responses
     return () => {
       ignore = true;
     };
@@ -55,7 +58,7 @@ export function Home() {
 
       <PostsGrid>
         {issues.map((issue) => (
-          <PostCard key={issue.id} issue={issue} repo={REPO_NAME} />
+          <PostCard key={issue.id} issue={issue} />
         ))}
       </PostsGrid>
     </>

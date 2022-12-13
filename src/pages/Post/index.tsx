@@ -1,4 +1,4 @@
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -15,25 +15,34 @@ import { api } from '../../lib/axios';
 import { Issue } from '../../@types/issue';
 import ReactMarkdown from 'react-markdown';
 
+const { VITE_USER_NAME: USER_NAME, VITE_REPO_NAME: REPO_NAME } = import.meta
+  .env;
+
 export function Post() {
   const [issue, setIssue] = useState<Issue | null>(null);
-  const [searchParams] = useSearchParams();
+  const { id } = useParams();
 
+  // sync by fetching issue by id
   useEffect(() => {
-    async function fetchIssue() {
-      const id = searchParams.get('id');
-      const user = searchParams.get('user');
-      const repo = searchParams.get('repo');
+    let ignore = false;
 
+    async function fetchIssue() {
       const { data } = await api.get<Issue>(
-        `/repos/${user}/${repo}/issues/${id}`,
+        `/repos/${USER_NAME}/${REPO_NAME}/issues/${id}`,
       );
 
-      setIssue(data);
+      // to prevent late responses overriding each other
+      if (!ignore) {
+        setIssue(data);
+      }
     }
 
     fetchIssue();
-  }, [searchParams]);
+
+    return () => {
+      ignore = true;
+    };
+  }, [id]);
 
   if (!issue) {
     return <div>Loading...</div>;

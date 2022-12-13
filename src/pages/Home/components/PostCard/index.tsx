@@ -4,23 +4,11 @@ import { formatDistanceToNow } from 'date-fns';
 
 interface PostCardProps {
   issue: Issue;
-  repo: string;
 }
 
-export function PostCard({ issue, repo }: PostCardProps) {
-  const searchParams = new URLSearchParams({
-    id: String(issue.number),
-    user: issue.user.login,
-    repo,
-  });
-
+export function PostCard({ issue }: PostCardProps) {
   return (
-    <LinkContainer
-      to={{
-        pathname: '/posts',
-        search: searchParams.toString(),
-      }}
-    >
+    <LinkContainer to={`/posts/${issue.number}`}>
       <Header>
         <h2>{issue.title}</h2>
         <span>
