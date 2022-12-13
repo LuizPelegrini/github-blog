@@ -1,4 +1,5 @@
 import { NavLink, useSearchParams } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -38,12 +39,6 @@ export function Post() {
     return <div>Loading...</div>;
   }
 
-  function formatComments(commentsAmount: number) {
-    if (commentsAmount === 1) return '1 comment';
-
-    return `${commentsAmount} comments`;
-  }
-
   return (
     <>
       <Container>
@@ -67,11 +62,17 @@ export function Post() {
             </div>
             <div>
               <FontAwesomeIcon icon={faCalendarDay} />
-              <span>1 day ago</span>
+              <span>
+                {formatDistanceToNow(new Date(issue.created_at), {
+                  addSuffix: true,
+                })}
+              </span>
             </div>
             <div>
               <FontAwesomeIcon icon={faComment} />
-              <span>{formatComments(issue.comments)}</span>
+              <span>{`${issue.comments} ${
+                issue.comments === 1 ? 'comment' : 'comments'
+              }`}</span>
             </div>
           </div>
         </Details>

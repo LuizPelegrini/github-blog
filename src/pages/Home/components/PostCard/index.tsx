@@ -1,25 +1,16 @@
+import { Issue } from '../../../../@types/issue';
 import { LinkContainer, Header } from './styles';
+import { formatDistanceToNow } from 'date-fns';
 
 interface PostCardProps {
-  id: number;
-  title: string;
-  user: string;
+  issue: Issue;
   repo: string;
-  date: string;
-  description: string;
 }
 
-export function PostCard({
-  id,
-  title,
-  date,
-  description,
-  user,
-  repo,
-}: PostCardProps) {
+export function PostCard({ issue, repo }: PostCardProps) {
   const searchParams = new URLSearchParams({
-    id: String(id),
-    user,
+    id: String(issue.number),
+    user: issue.user.login,
     repo,
   });
 
@@ -31,10 +22,12 @@ export function PostCard({
       }}
     >
       <Header>
-        <h2>{title}</h2>
-        <span>1 day ago</span>
+        <h2>{issue.title}</h2>
+        <span>
+          {formatDistanceToNow(new Date(issue.created_at), { addSuffix: true })}
+        </span>
       </Header>
-      <p>{description}</p>
+      <p>{issue.body}</p>
     </LinkContainer>
   );
 }

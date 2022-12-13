@@ -30,6 +30,7 @@ export function Home() {
     fetchIssues(query).then((issues) => {
       if (!ignore) {
         setIssues(issues);
+        console.log(issues);
       }
     });
 
@@ -54,15 +55,7 @@ export function Home() {
 
       <PostsGrid>
         {issues.map((issue) => (
-          <PostCard
-            key={issue.id}
-            id={issue.number}
-            title={issue.title}
-            date={issue.created_at}
-            description={issue.body}
-            repo={REPO_NAME}
-            user={USER_NAME}
-          />
+          <PostCard key={issue.id} issue={issue} repo={REPO_NAME} />
         ))}
       </PostsGrid>
     </>
