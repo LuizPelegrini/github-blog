@@ -8,7 +8,12 @@ export const LinkContainer = styled(NavLink)`
   padding: 2rem;
   border-radius: 10px;
   cursor: pointer;
+  border: 0;
   transition: box-shadow 0.15s;
+
+  &:hover {
+    border: 0;
+  }
 
   p {
     margin-top: 1.25rem;

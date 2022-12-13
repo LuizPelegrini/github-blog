@@ -9,4 +9,12 @@ export const Container = styled.header`
   display: flex;
   justify-content: center;
   padding: 4rem 0 8.375rem;
+
+  a {
+    border: 0;
+
+    &:hover {
+      border: 0;
+    }
+  }
 `;
