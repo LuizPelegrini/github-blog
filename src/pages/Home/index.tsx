@@ -12,11 +12,12 @@ const REPO_NAME = 'github-blog';
 
 export function Home() {
   const [issues, setIssues] = useState<Issue[]>([]);
+  const [query, setQuery] = useState('');
 
-  async function fetchIssues() {
+  async function fetchIssues(query: string) {
     const { data } = await api.get('/search/issues', {
       params: {
-        q: `repo:${USER_NAME}/${REPO_NAME}`,
+        q: `${query} repo:${USER_NAME}/${REPO_NAME}`,
       },
     });
 
@@ -26,23 +27,30 @@ export function Home() {
   useEffect(() => {
     let ignore = false;
 
-    fetchIssues().then((issues) => {
+    fetchIssues(query).then((issues) => {
       if (!ignore) {
         setIssues(issues);
-        console.log(issues);
       }
     });
 
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [query]);
+
+  function handleSearch(query: string) {
+    if (query.length > 3) {
+      setQuery(query);
+    } else if (query.length === 0) {
+      setQuery('');
+    }
+  }
 
   return (
     <>
       <ProfileHeader />
 
-      <SearchForm numberOfPosts={issues.length} />
+      <SearchForm numberOfPosts={issues.length} onQueryChange={handleSearch} />
 
       <PostsGrid>
         {issues.map((issue) => (
