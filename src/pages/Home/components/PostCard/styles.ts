@@ -12,6 +12,12 @@ export const LinkContainer = styled(NavLink)`
 
   p {
     margin-top: 1.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   &:hover {
@@ -22,7 +28,6 @@ export const LinkContainer = styled(NavLink)`
 export const Header = styled.header`
   display: flex;
   gap: 1rem;
-  align-items: center;
   justify-content: space-between;
 
   h2 {

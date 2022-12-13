@@ -26,11 +26,21 @@ export function ProfileHeader() {
 
   async function fetchUser() {
     const { data } = await api.get<GithubUser>('/users/LuizPelegrini');
-    setUser(data);
+    return data;
   }
 
   useEffect(() => {
-    fetchUser();
+    let ignore = false;
+
+    fetchUser().then((user) => {
+      if (!ignore) {
+        setUser(user);
+      }
+    });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   if (!user) {
