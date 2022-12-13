@@ -17,14 +17,12 @@ export function Home() {
   async function fetchIssues(query: string) {
     const { data } = await api.get('/search/issues', {
       params: {
-        q: `${query} repo:${USER_NAME}/${REPO_NAME}`,
+        q: `${query} repo:${USER_NAME}/${REPO_NAME} label:published`,
       },
     });
 
     return data.items;
   }
-
-  console.log(import.meta.env.VITE_USER_NAME);
 
   // sync by fetching issues
   useEffect(() => {
