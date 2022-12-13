@@ -32,7 +32,7 @@ export const Header = styled.header`
     font-size: 0.75rem;
     font-weight: 700;
     line-height: 0;
-    padding: 0.375rem 0;
+    padding: 0 0 0.375rem;
     border-bottom: 1px solid transparent;
     transition: border 0.15s;
 

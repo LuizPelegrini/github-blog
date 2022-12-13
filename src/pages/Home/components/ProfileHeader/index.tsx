@@ -10,16 +10,7 @@ import {
 import { api } from '../../../../lib/axios';
 
 import { Container, Details, Header, Footer } from './styles';
-
-interface GithubUser {
-  name: string;
-  avatar_url: string;
-  bio: string;
-  company: string;
-  login: string;
-  html_url: string;
-  followers: number;
-}
+import { GithubUser } from '../../../../@types/user';
 
 export function ProfileHeader() {
   const [user, setUser] = useState<GithubUser | null>(null);
