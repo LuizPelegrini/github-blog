@@ -16,7 +16,7 @@ export function Home() {
   async function fetchIssues() {
     const { data } = await api.get('/search/issues', {
       params: {
-        q: `Boas praticas repo:${USER_NAME}/${REPO_NAME}`,
+        q: `repo:${USER_NAME}/${REPO_NAME}`,
       },
     });
 
@@ -42,7 +42,7 @@ export function Home() {
     <>
       <ProfileHeader />
 
-      <SearchForm />
+      <SearchForm numberOfPosts={issues.length} />
 
       <PostsGrid>
         {issues.map((issue) => (
