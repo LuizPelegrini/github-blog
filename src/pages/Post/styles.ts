@@ -14,19 +14,11 @@ export const Links = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    line-height: 0;
     text-decoration: none;
     color: ${(props) => props.theme.blue};
     text-transform: uppercase;
     font-weight: 700;
     font-size: 0.75rem;
-    padding: 0 0 0.375rem;
-    border-bottom: 1px solid transparent;
-    transition: border 0.15s;
-
-    &:hover {
-      border-bottom: 1px solid ${(props) => props.theme.blue};
-    }
   }
 `;
 

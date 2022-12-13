@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -13,12 +13,12 @@ export const GlobalStyle = createGlobalStyle`
 
   :focus {
     outline: 0;
-    box-shadow: 0 0 0 2px ${props => props.theme.blue};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.blue};
   }
 
   body {
-    background-color: ${props => props.theme['base-background']};
-    color: ${props => props.theme['base-text']};
+    background-color: ${(props) => props.theme['base-background']};
+    color: ${(props) => props.theme['base-text']};
     -webkit-font-smoothing: antialiased;
   }
 
@@ -34,5 +34,16 @@ export const GlobalStyle = createGlobalStyle`
   button {
     border: 0;
     cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme.blue};
+    border-bottom: 1px solid transparent;
+    transition: border 0.15s;
+
+    &:hover {
+      border-bottom: 1px solid ${(props) => props.theme.blue};
+    }
   }
 `;
