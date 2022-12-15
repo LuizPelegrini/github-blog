@@ -46,4 +46,10 @@ export const GlobalStyle = createGlobalStyle`
       border-bottom: 1px solid ${(props) => props.theme.blue};
     }
   }
+
+  @media(max-width: ${(props) => props.theme.md}) {
+    html {
+      font-size: 87.5%;
+    }
+  }
 `;

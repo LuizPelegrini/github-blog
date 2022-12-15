@@ -23,6 +23,7 @@ export const LinkContainer = styled(NavLink)`
     -webkit-line-clamp: 2; /* number of lines to show */
     line-clamp: 2;
     -webkit-box-orient: vertical;
+    word-break: break-word;
   }
 
   &:hover {
