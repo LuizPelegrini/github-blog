@@ -1,5 +1,4 @@
 import { PostCardSkeleton, PostsGrid, NoResultsContainer } from './styles';
-
 import { SearchForm } from './components/SearchForm';
 import { PostCard } from './components/PostCard';
 import { ProfileHeader } from './components/ProfileHeader';
