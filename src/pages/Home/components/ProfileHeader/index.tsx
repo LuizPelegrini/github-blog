@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -9,7 +10,9 @@ import {
 
 import { api } from '../../../../lib/axios';
 
-import { Container, Details, Header, Footer } from './styles';
+import { Container, Details, Header, Footer, AvatarContainer } from './styles';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import { GithubUser } from '../../../../@types/user';
 
 export function ProfileHeader() {
@@ -34,35 +37,49 @@ export function ProfileHeader() {
     };
   }, []);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Container>
-      <img src={user.avatar_url} alt="" />
+      <AvatarContainer className="avatar">
+        {!user ? (
+          <Skeleton width="100%" height="100%" />
+        ) : (
+          <img src={user.avatar_url} alt="" />
+        )}
+      </AvatarContainer>
       <Details>
         <Header>
-          <h2>{user.name}</h2>
-          <a href={user.html_url} target="_blank" rel="noreferrer">
-            <span>Github</span>
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </a>
+          {user ? (
+            <>
+              <h2>{user.name}</h2>
+              <a href={user.html_url} target="_blank" rel="noreferrer">
+                <span>Github</span>
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              </a>
+            </>
+          ) : (
+            <Skeleton containerClassName="user-details-skeleton" />
+          )}
         </Header>
-        <p>{user.bio}</p>
+        <p>{user ? user.bio : <Skeleton />}</p>
         <Footer>
-          <div>
-            <FontAwesomeIcon icon={faGithub} />
-            <span>{user.login}</span>
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faBuilding} />
-            <span>{user.company}</span>
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faUserGroup} />
-            <span>{user.followers} followers</span>
-          </div>
+          {user ? (
+            <>
+              <div>
+                <FontAwesomeIcon icon={faGithub} />
+                <span>{user.login}</span>
+              </div>
+              <div>
+                <FontAwesomeIcon icon={faBuilding} />
+                <span>{user.company}</span>
+              </div>
+              <div>
+                <FontAwesomeIcon icon={faUserGroup} />
+                <span>{user.followers} followers</span>
+              </div>
+            </>
+          ) : (
+            <Skeleton count={3} containerClassName="footer-skeleton" />
+          )}
         </Footer>
       </Details>
     </Container>

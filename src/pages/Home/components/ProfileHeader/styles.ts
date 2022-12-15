@@ -6,17 +6,27 @@ export const Container = styled.div`
   border-radius: 10px;
   display: flex;
   gap: 2rem;
+`;
+
+export const AvatarContainer = styled.div`
+  width: 9.25rem;
+  height: 9.25rem;
+  border-radius: 8px;
+  overflow: hidden;
 
   img {
-    width: 9.25rem;
-    height: 9.25rem;
-    border-radius: 8px;
+    width: 100%;
+    height: 100%;
   }
 `;
 
 export const Header = styled.header`
   display: flex;
   align-items: center;
+
+  .user-details-skeleton {
+    width: 100%;
+  }
 
   h2 {
     color: ${(props) => props.theme['base-title']};
@@ -39,6 +49,7 @@ export const Header = styled.header`
 `;
 
 export const Details = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
 
@@ -52,6 +63,15 @@ export const Footer = styled.footer`
   margin-top: auto;
   display: flex;
   gap: 1.5rem;
+
+  .footer-skeleton {
+    display: flex;
+    width: 100%;
+
+    span {
+      flex: 1;
+    }
+  }
 
   span {
     margin-left: 0.5rem;
