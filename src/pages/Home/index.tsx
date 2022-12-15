@@ -16,8 +16,6 @@ export function Home() {
   const [isFetching, setIsFetching] = useState(true);
 
   async function fetchIssues(query: string) {
-    setIsFetching(true);
-
     const { data } = await api.get('/search/issues', {
       params: {
         q: `${query} repo:${USER_NAME}/${REPO_NAME} label:published`,
@@ -39,7 +37,9 @@ export function Home() {
   useEffect(() => {
     let ignore = false;
 
+    setIsFetching(true);
     fetchIssues(query).then((issues) => {
+      setIsFetching(false);
       if (!ignore) {
         setIssues(issues);
       }
@@ -48,15 +48,12 @@ export function Home() {
     // to prevent race condition on multiple responses
     return () => {
       ignore = true;
+      setIssues([]); // reset list of issues whenever a new query comes in, prevents rendering list if initial request is resolved
     };
   }, [query]);
 
   function handleSearch(query: string) {
-    if (query.length > 3) {
-      setQuery(query);
-    } else if (query.length === 0) {
-      setQuery('');
-    }
+    setQuery(query);
   }
 
   const generatePostSkeletons = useCallback((numberOfPosts: number) => {
