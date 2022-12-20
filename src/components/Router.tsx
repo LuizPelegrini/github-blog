@@ -24,7 +24,9 @@ const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, {
+  basename: '/github-blog',
+});
 
 export function Router() {
   return <RouterProvider router={router} />;
