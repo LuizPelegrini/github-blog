@@ -40,6 +40,11 @@ export const Details = styled.div`
       align-items: center;
       gap: 0.5rem;
     }
+
+    @media (max-width: ${(props) => props.theme.md}) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 `;
 
@@ -59,5 +64,13 @@ export const Markdown = styled.article`
   img {
     width: 100%;
     border-radius: 8px;
+  }
+
+  pre {
+    overflow: auto;
+  }
+
+  @media (max-width: ${(props) => props.theme.md}) {
+    padding: 2.5rem 0.5rem;
   }
 `;

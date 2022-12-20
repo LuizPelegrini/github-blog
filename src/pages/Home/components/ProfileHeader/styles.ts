@@ -83,9 +83,12 @@ export const Footer = styled.footer`
     margin-left: 0.5rem;
   }
 
+  @media (max-width: ${(props) => props.theme.md}) {
+    margin-top: 1.5rem;
+  }
+
   @media (max-width: ${(props) => props.theme.sm}) {
     gap: 1rem;
-    margin-top: 1rem;
 
     justify-content: space-between;
   }

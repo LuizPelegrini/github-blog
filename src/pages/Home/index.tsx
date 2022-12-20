@@ -22,12 +22,6 @@ export function Home() {
       },
     });
 
-    await new Promise<void>((resolve) =>
-      setTimeout(() => {
-        resolve();
-      }, 3000),
-    );
-
     setIsFetching(false);
 
     return data.items;
