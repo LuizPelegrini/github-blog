@@ -6,6 +6,12 @@ export const Container = styled.div`
   border-radius: 10px;
   display: flex;
   gap: 2rem;
+
+  @media (max-width: ${(props) => props.theme.md}) {
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+  }
 `;
 
 export const AvatarContainer = styled.div`
@@ -75,5 +81,12 @@ export const Footer = styled.footer`
 
   span {
     margin-left: 0.5rem;
+  }
+
+  @media (max-width: ${(props) => props.theme.sm}) {
+    gap: 1rem;
+    margin-top: 1rem;
+
+    justify-content: space-between;
   }
 `;

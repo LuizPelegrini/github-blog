@@ -12,7 +12,7 @@ export const defaultTheme = {
   'base-background': '#071422',
   'base-input': '#040F1A',
 
-  sm: '300px',
+  sm: '400px',
   md: '600px',
   lg: '1200px',
 
